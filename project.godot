@@ -12,7 +12,16 @@ config_version=4
 
 config/name="Translation Tracker"
 run/main_scene="res://Boot.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="translation_tracker"
+boot_splash/show_image=false
 config/icon="res://icon.png"
+config/size/borderless=true
+config/show_image=true
+
+[autoload]
+
+Translations="*res://translations.gd"
 
 [debug]
 
@@ -25,11 +34,15 @@ gdscript/warnings/unused_signal=false
 window/size/width=1280
 window/size/height=720
 window/size/resizable=false
-window/size/borderless=true
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[internationalization]
+
+locale/locale_filter_mode=0
+locale/language_filter=[ "en" ]
 
 [physics]
 
