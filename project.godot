@@ -14,6 +14,12 @@ config/name="Translation Tracker"
 run/main_scene="res://Boot.tscn"
 config/icon="res://icon.png"
 
+[debug]
+
+gdscript/warnings/unassigned_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/unused_signal=false
+
 [display]
 
 window/size/width=1280
