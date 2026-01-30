@@ -1,9 +1,11 @@
 extends HBoxContainer
 
-onready var root = get_tree().get_root().get_node("Boot")
+var list
+
+export var translation : String = ""
 
 func _ready():
-	$Button.connect("pressed",root,"_entry_pressed")
+	$Button.connect("pressed",list,"_entry_pressed",[translation])
 	
 	
 	pass
