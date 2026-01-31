@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=1]
-[ext_resource path="res://Boot.gd" type="Script" id=2]
-[ext_resource path="res://Exit.gd" type="Script" id=3]
+[ext_resource path="res://TranslationsAdded.tscn" type="PackedScene" id=2]
+[ext_resource path="res://HeaderPanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entry_list/EntryList.gd" type="Script" id=4]
 [ext_resource path="res://TranslationSelector.tscn" type="PackedScene" id=5]
 
@@ -10,11 +10,6 @@
 margin_right = 1280.0
 margin_bottom = 720.0
 theme = ExtResource( 1 )
-script = ExtResource( 2 )
-
-[node name="Settings" type="Popup" parent="."]
-margin_right = 1280.0
-margin_bottom = 720.0
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 margin_right = 1280.0
@@ -26,105 +21,108 @@ margin_top = 5.0
 margin_right = 1275.0
 margin_bottom = 715.0
 
-[node name="Header" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-margin_right = 1270.0
-margin_bottom = 32.0
+[node name="HeaderPanel" parent="PanelContainer/VBoxContainer" instance=ExtResource( 3 )]
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Header"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
+margin_top = 46.0
 margin_right = 1270.0
-margin_bottom = 32.0
-size_flags_horizontal = 3
-align = 1
-
-[node name="Exit" type="Button" parent="PanelContainer/VBoxContainer/Header"]
-visible = false
-margin_left = 1228.0
-margin_right = 1270.0
-margin_bottom = 42.0
-rect_min_size = Vector2( 42, 42 )
-focus_mode = 0
-enabled_focus_mode = 0
-text = "X"
-script = ExtResource( 3 )
+margin_bottom = 50.0
 
 [node name="Texts" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-margin_top = 36.0
+margin_top = 54.0
 margin_right = 1270.0
 margin_bottom = 710.0
 size_flags_vertical = 3
 
-[node name="EntryList" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts"]
+[node name="ListBox" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Texts"]
+margin_right = 258.0
+margin_bottom = 656.0
+
+[node name="EntryList" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox"]
 margin_right = 250.0
-margin_bottom = 674.0
+margin_bottom = 656.0
 rect_min_size = Vector2( 250, 0 )
 script = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Texts/EntryList"]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
 margin_right = 250.0
 margin_bottom = 32.0
 text = "Translation Strings"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/Texts/EntryList"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
 margin_top = 36.0
 margin_right = 250.0
-margin_bottom = 674.0
+margin_bottom = 656.0
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/EntryList/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/ScrollContainer"]
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/Texts/ListBox"]
+margin_left = 254.0
+margin_right = 258.0
+margin_bottom = 656.0
 
 [node name="TranslationViewer" type="HSplitContainer" parent="PanelContainer/VBoxContainer/Texts"]
-margin_left = 254.0
+margin_left = 262.0
 margin_right = 1270.0
-margin_bottom = 674.0
+margin_bottom = 656.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer"]
-margin_right = 504.0
-margin_bottom = 674.0
+margin_right = 500.0
+margin_bottom = 656.0
 size_flags_horizontal = 3
 
 [node name="Container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer"]
-margin_right = 496.0
-margin_bottom = 674.0
+margin_right = 492.0
+margin_bottom = 656.0
 size_flags_horizontal = 3
 
 [node name="TranslationSelector" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container" instance=ExtResource( 5 )]
+margin_right = 492.0
 margin_bottom = 36.0
 
 [node name="Master" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container"]
 margin_top = 40.0
-margin_right = 496.0
+margin_right = 492.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer"]
-margin_left = 500.0
-margin_right = 504.0
-margin_bottom = 674.0
+margin_left = 496.0
+margin_right = 500.0
+margin_bottom = 656.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer"]
-margin_left = 512.0
-margin_right = 1016.0
-margin_bottom = 674.0
+margin_left = 508.0
+margin_right = 1008.0
+margin_bottom = 656.0
 size_flags_horizontal = 3
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2"]
 margin_right = 4.0
-margin_bottom = 674.0
+margin_bottom = 656.0
 
 [node name="Container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2"]
 margin_left = 8.0
-margin_right = 504.0
-margin_bottom = 674.0
+margin_right = 500.0
+margin_bottom = 656.0
 size_flags_horizontal = 3
 
 [node name="TranslationSelector" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container" instance=ExtResource( 5 )]
+margin_right = 492.0
 margin_bottom = 36.0
+type = "puppet"
 
 [node name="Compare" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container"]
 margin_top = 40.0
-margin_right = 496.0
+margin_right = 492.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Header/Exit" to="PanelContainer/VBoxContainer/Header/Exit" method="_pressed"]
+[node name="Settings" type="Popup" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="TranslationsAdded" parent="." instance=ExtResource( 2 )]
+visible = false
