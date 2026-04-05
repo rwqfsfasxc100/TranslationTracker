@@ -11,7 +11,7 @@ script = ExtResource( 1 )
 [node name="Label" type="Label" parent="."]
 margin_top = 2.0
 margin_right = 342.0
-margin_bottom = 34.0
+margin_bottom = 40.0
 size_flags_horizontal = 3
 text = "Locale:"
 align = 2
@@ -19,5 +19,5 @@ align = 2
 [node name="OptionButton" type="OptionButton" parent="."]
 margin_left = 346.0
 margin_right = 496.0
-margin_bottom = 36.0
+margin_bottom = 42.0
 rect_min_size = Vector2( 150, 0 )

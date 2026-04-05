@@ -38,6 +38,10 @@ window/size/height=720
 window/size/resizable=false
 window/size/borderless=true
 
+[editor]
+
+search_in_file_extensions=PoolStringArray( "gd", "gdshader", "shader", "tscn" )
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

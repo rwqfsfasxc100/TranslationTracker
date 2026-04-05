@@ -2,11 +2,31 @@ extends Node
 
 var file = File.new()
 
+func load_translation_driver(filepath) -> Dictionary:
+	var script = load(filepath)
+	var out = script.get_script_constant_map().get("TRANSLATIONS",{})
+	if "file" in out:
+		var filesect = out["file"].duplicate(true)
+		out.erase("file")
+		for f in filesect:
+			var folderCheck = f.split("/")[2]
+			if folderCheck in filepath.split("/"):
+				var dvDir = filepath.split(folderCheck)[0]
+				var rmdr = f.lstrip("res://")
+				var should_be_path = dvDir + rmdr
+				if file.file_exists(should_be_path):
+					var delim = filesect.get(f,"|")
+					if typeof(delim) == TYPE_DICTIONARY:
+						delim = delim.get("string","|")
+					var fdict = translation_file_to_dictionary(should_be_path,delim)
+					out.merge(fdict)
+	return out
+
 func load_translation_file(filepath,delim = "|") -> Dictionary:
 	var dict = {}
 	filepath = ProjectSettings.localize_path(filepath)
 	file.open(filepath,File.READ)
-	var data = Array(file.get_as_text(true).split("\n"))
+	var data = PoolStringArray(file.get_as_text(true).split("\n"))
 	file.close()
 	if data[0].split(delim)[0] == "locale":
 		dict = translation_file_to_dictionary(filepath,delim)
@@ -60,7 +80,8 @@ func translation_file_to_dictionary(path : String, delimiter : String = "|",lang
 		var tlindex = 0
 		while tlindex < languages.size():
 			var lang = languages[tlindex]
-			dictionary[lang].merge({translation_string:line_split[tlindex + 1]})
+			var entryDict = {"string":line_split[tlindex + 1],"version_hash":0,"mod":"","section":"","setting":"","invert":false}
+			dictionary[lang].merge({translation_string:entryDict})
 			tlindex += 1
 		index += 1
 		translation_count += 1

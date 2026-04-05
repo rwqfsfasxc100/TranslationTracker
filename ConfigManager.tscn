@@ -1,0 +1,121 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=1]
+[ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-courierbold.tres" type="DynamicFont" id=2]
+[ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-courierbold-small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ConfigManager.gd" type="Script" id=4]
+
+[node name="ConfigManager" type="VBoxContainer"]
+margin_right = 492.0
+margin_bottom = 128.0
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[node name="ID" type="HBoxContainer" parent="."]
+margin_right = 492.0
+margin_bottom = 34.0
+
+[node name="Label" type="Label" parent="ID"]
+margin_top = 2.0
+margin_right = 244.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Config ID"
+
+[node name="PanelContainer" type="PanelContainer" parent="ID"]
+margin_left = 248.0
+margin_right = 492.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="ID/PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 239.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+editable = false
+
+[node name="Section" type="HBoxContainer" parent="."]
+margin_top = 38.0
+margin_right = 492.0
+margin_bottom = 72.0
+
+[node name="Label" type="Label" parent="Section"]
+margin_top = 2.0
+margin_right = 244.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Config Section"
+
+[node name="PanelContainer" type="PanelContainer" parent="Section"]
+margin_left = 248.0
+margin_right = 492.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="Section/PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 239.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+editable = false
+
+[node name="Setting" type="HBoxContainer" parent="."]
+margin_top = 76.0
+margin_right = 492.0
+margin_bottom = 110.0
+
+[node name="Label" type="Label" parent="Setting"]
+margin_top = 2.0
+margin_right = 244.0
+margin_bottom = 31.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Config Entry"
+
+[node name="PanelContainer" type="PanelContainer" parent="Setting"]
+margin_left = 248.0
+margin_right = 492.0
+margin_bottom = 34.0
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="Setting/PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 239.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 3 )
+editable = false
+
+[node name="Invert" type="HBoxContainer" parent="."]
+margin_top = 114.0
+margin_right = 492.0
+margin_bottom = 166.0
+
+[node name="Label" type="Label" parent="Invert"]
+margin_top = 11.0
+margin_right = 244.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Invert Logic"
+
+[node name="PanelContainer" type="PanelContainer" parent="Invert"]
+margin_left = 248.0
+margin_right = 492.0
+margin_bottom = 52.0
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="Invert/PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 239.0
+margin_bottom = 47.0
+disabled = true

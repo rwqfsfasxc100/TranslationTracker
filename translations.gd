@@ -6,25 +6,30 @@ var default = "en"
 var unsaved = false
 
 var state = {}
+var master_locale = "en"
 
-signal translations_added(file, translations)
+var current_locales = ["en"]
+
+signal translations_adding(file, translations)
+signal translations_added()
 
 func _ready():
-	var lang = "cs_CZ"
-	var s = lang.split("_")
-	var l = TranslationServer.get_locale_name(lang)
-	var l2 = TranslationServer.get_language_name(s[0])
-	var l3 = ""
-	if s.size() >= 2:
-		l3 = TranslationServer.get_country_name(s[1])
 	get_tree().connect("files_dropped",self,"load_file")
 
 
 func load_file(files,screen):
 	OS.move_window_to_foreground()
-	var t = {}
-	var f = ""
-	if files.size() > 0:
-		f = ProjectSettings.localize_path(files[0])
-		t = ParseTranslations.load_translation_file(f)
-	emit_signal("translations_added",f,t)
+	for fi in files:
+		var f = ProjectSettings.localize_path(fi)
+		var t = null
+		if f.ends_with("REPLACE_TRANSLATIONS.gd"):
+			t = ParseTranslations.load_translation_driver(f)
+		else:
+			t = ParseTranslations.load_translation_file(f)
+		emit_signal("translations_adding",f,t)
+
+func export_state():
+	
+	
+	
+	pass
