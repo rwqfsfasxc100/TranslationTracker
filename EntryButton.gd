@@ -32,8 +32,9 @@ func _entry_pressed():
 	Translations.emit_signal("selected_translation",translation)
 	emit_signal("pressed",translation)
 
-
+var kill = false
 func _on_DoDelete_confirmed():
+	kill = true
 	Translations.remove_translation(translation)
 #	yield(get_tree(),"idle_frame")
 #	queue_free()
@@ -46,7 +47,7 @@ func _on_Delete_pressed():
 var is_missing = false
 var current_puppet_locale = ""
 func recheck_hash():
-	if Translations.clearing:
+	if Translations.clearing or kill:
 		return
 	var visibility = false
 	is_missing = false
