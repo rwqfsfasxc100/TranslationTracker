@@ -33,6 +33,8 @@ func _ready():
 			var master_locale = Translations.master_locale
 			selector.add_item(master_locale)
 			swap_locale_btn.text = ">"
+			swap_locale_btn.visible = false
+			remove_locale_btn.visible = false
 		"puppet":
 			prefix = "Puppet "
 			hint_tooltip = "Additional locales provided by the translation file\n\nThese should mirror the master locale's content."
@@ -104,6 +106,9 @@ func change_this_translation(translation):
 			text_edit.readonly = true
 			config_manager.set_enabled(false)
 	else:
+		text_edit.readonly = true
+		config_manager.set_enabled(false)
+	if Translations.state.empty():
 		text_edit.readonly = true
 		config_manager.set_enabled(false)
 	if type == "puppet":
