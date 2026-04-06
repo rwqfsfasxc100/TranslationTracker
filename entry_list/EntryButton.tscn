@@ -23,23 +23,29 @@ margin_bottom = 42.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Button"]
-margin_right = 204.0
-margin_bottom = 42.0
-rect_min_size = Vector2( 219, 42 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_right = -5.0
 custom_fonts/font = ExtResource( 3 )
 text = "HEVLIB_EXAMPLE_STRING"
 valign = 1
 clip_text = true
 
 [node name="NeedsCheck" type="Control" parent="Button"]
-margin_left = 250.0
-margin_right = 250.0
-margin_bottom = 42.0
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -42.0
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="Button" type="Button" parent="Button/NeedsCheck"]
-margin_left = -72.0
-margin_right = -30.0
-margin_bottom = 42.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="TextureRect" type="TextureRect" parent="Button/NeedsCheck/Button"]
 self_modulate = Color( 1, 1, 0, 1 )
