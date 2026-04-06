@@ -11,7 +11,7 @@ onready var remove_locale_btn = $RemoveLocale
 onready var remove_locale_diag = $RemoveConfirm
 onready var add_locale_btn = $AddLocale
 onready var add_locale_diag = $AddConfirm
-onready var add_locale_txt = $AddConfirm/ColorRect/LineEdit
+onready var add_locale_txt = $AddConfirm/H/ColorRect/LineEdit
 onready var swap_locale_btn = $SwapLocale
 
 func _ready():
