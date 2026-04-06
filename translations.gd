@@ -94,7 +94,7 @@ func check_hash():
 		unsaved = true
 	state_hash = h
 
-var script_base = "extends Node\n\nconst TRANSLATIONS = %s"
+var script_base = "extends Node\n\n# This translation file is generated automatically\n# Do not modify anything directly, as this can break things for those working on them\n# Please use Translation Tracker to modify these yourself, and contact the mod author to implement them\n# https://github.com/rwqfsfasxc100/TranslationTracker/releases/latest\n\nconst TRANSLATIONS = %s"
 var file = File.new()
 
 func fix_locale_state():
@@ -108,6 +108,8 @@ func clear_state():
 	clearing = true
 	for c in get_tree().get_root().get_node("Boot/PanelContainer/VBoxContainer/Texts/ListBox/EntryList/ScrollContainer/VBoxContainer").get_children():
 		c.queue_free()
+	master_locale = default_master_locale
+	current_locales = default_locales.duplicate(true)
 	state.clear()
 	for t in state:
 		remove_translation(t)
