@@ -119,3 +119,8 @@ margin_top = 5.0
 margin_right = 239.0
 margin_bottom = 47.0
 disabled = true
+
+[connection signal="text_changed" from="ID/PanelContainer/LineEdit" to="." method="_id_text_changed"]
+[connection signal="text_changed" from="Section/PanelContainer/LineEdit" to="." method="_section_text_changed"]
+[connection signal="text_changed" from="Setting/PanelContainer/LineEdit" to="." method="_setting_text_changed"]
+[connection signal="toggled" from="Invert/PanelContainer/CheckButton" to="." method="_invert_toggled"]

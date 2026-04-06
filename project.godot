@@ -21,6 +21,7 @@ config/show_image=true
 
 [autoload]
 
+Settings="*res://Settings.gd"
 Translations="*res://translations.gd"
 ParseTranslations="*res://ParseTranslations.gd"
 

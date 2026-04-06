@@ -15,6 +15,9 @@ func adding_translations():
 	for translation in l:
 		var data = l[translation]
 		create_button(translation,data)
+#	yield(get_tree(),"idle_frame")
+	if list.get_child_count():
+		list.get_child(0)._entry_pressed()
 
 func create_button(translation,data):
 	var b = entry_button.instance()
@@ -39,3 +42,19 @@ func _on_Search_text_changed(new_text):
 	else:
 		for child in list.get_children():
 			child.visible = true
+
+
+onready var add_entry = $SearchBox/AddConfirm
+onready var add_entry_text = $SearchBox/AddConfirm/ColorRect/LineEdit
+
+func _on_AddNew_pressed():
+	add_entry.popup_centered()
+	add_entry_text.grab_focus()
+
+
+func _on_AddConfirm_confirmed():
+	var txt = add_entry_text.text
+	if txt:
+		Translations.add_translation(txt)
+		
+		add_entry.hide()

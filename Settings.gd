@@ -2,7 +2,7 @@ extends Node
 
 var cfg = {
 	"load":{
-		"loaded_translation_files":[],
+		"last_path":"",
 	},
 }
 var filepath = "user://settings.cfg"

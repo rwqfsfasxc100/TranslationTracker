@@ -19,3 +19,14 @@ func _ready():
 
 func _entry_pressed():
 	emit_signal("pressed",translation)
+
+
+func _on_DoDelete_confirmed():
+	Translations.remove_translation(translation)
+#	yield(get_tree(),"idle_frame")
+#	queue_free()
+
+onready var doDelete = $DoDelete
+
+func _on_Delete_pressed():
+	doDelete.popup_centered()

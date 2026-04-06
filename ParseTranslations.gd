@@ -80,7 +80,8 @@ func translation_file_to_dictionary(path : String, delimiter : String = "|",lang
 		var tlindex = 0
 		while tlindex < languages.size():
 			var lang = languages[tlindex]
-			var entryDict = {"string":line_split[tlindex + 1],"version_hash":0,"mod":"","section":"","setting":"","invert":false}
+			var entryDict = Translations.blank_entry_dict.duplicate(true)
+			entryDict["string"] = line_split[tlindex + 1]
 			dictionary[lang].merge({translation_string:entryDict})
 			tlindex += 1
 		index += 1

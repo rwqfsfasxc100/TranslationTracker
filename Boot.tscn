@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=1]
 [ext_resource path="res://TranslationsAdded.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://TranslationSelector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-courierbold-small.tres" type="DynamicFont" id=6]
 [ext_resource path="res://ConfigManager.tscn" type="PackedScene" id=7]
+[ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-courierbold.tres" type="DynamicFont" id=8]
 
 [node name="Boot" type="Control"]
 margin_right = 1280.0
@@ -37,64 +38,95 @@ margin_bottom = 710.0
 size_flags_vertical = 3
 
 [node name="ListBox" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Texts"]
-margin_right = 258.0
+margin_right = 273.0
 margin_bottom = 656.0
 
 [node name="EntryList" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox"]
-margin_right = 250.0
+margin_right = 265.0
 margin_bottom = 656.0
-rect_min_size = Vector2( 250, 0 )
+rect_min_size = Vector2( 265, 0 )
 script = ExtResource( 4 )
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
-margin_right = 250.0
+margin_right = 265.0
 margin_bottom = 38.0
 text = "Translation Strings"
 
-[node name="Search" type="LineEdit" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
+[node name="SearchBox" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
 margin_top = 42.0
-margin_right = 250.0
-margin_bottom = 66.0
+margin_right = 265.0
+margin_bottom = 75.0
+
+[node name="Search" type="LineEdit" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox"]
+margin_right = 239.0
+margin_bottom = 33.0
+size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 6 )
 clear_button_enabled = true
 placeholder_text = "Search..."
 
+[node name="AddNew" type="Button" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox"]
+margin_left = 243.0
+margin_right = 265.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 8 )
+text = "+"
+
+[node name="AddConfirm" type="ConfirmationDialog" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox"]
+margin_left = 148.0
+margin_right = 598.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 450, 150 )
+dialog_text = "Add new translation string:"
+dialog_hide_on_ok = false
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/AddConfirm"]
+margin_left = 8.0
+margin_top = 46.0
+margin_right = 442.0
+margin_bottom = 92.0
+color = Color( 1, 1, 1, 0.156863 )
+
+[node name="LineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/AddConfirm/ColorRect"]
+margin_right = 434.0
+margin_bottom = 46.0
+
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
-margin_top = 70.0
-margin_right = 250.0
+margin_top = 79.0
+margin_right = 265.0
 margin_bottom = 656.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/ScrollContainer"]
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/Texts/ListBox"]
-margin_left = 254.0
-margin_right = 258.0
+margin_left = 269.0
+margin_right = 273.0
 margin_bottom = 656.0
 
 [node name="TranslationViewer" type="HSplitContainer" parent="PanelContainer/VBoxContainer/Texts"]
-margin_left = 262.0
+margin_left = 277.0
 margin_right = 1270.0
 margin_bottom = 656.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer"]
-margin_right = 500.0
+margin_right = 492.0
 margin_bottom = 656.0
 size_flags_horizontal = 3
 
 [node name="Container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer"]
-margin_right = 492.0
+margin_right = 484.0
 margin_bottom = 656.0
 size_flags_horizontal = 3
 
 [node name="TranslationSelector" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container" instance=ExtResource( 5 )]
-margin_right = 492.0
+margin_right = 484.0
 margin_bottom = 42.0
 
 [node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container"]
 margin_top = 46.0
-margin_right = 492.0
+margin_right = 484.0
 margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -104,16 +136,17 @@ wrap_enabled = true
 
 [node name="ConfigManager" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container" instance=ExtResource( 7 )]
 margin_top = 490.0
+margin_right = 484.0
 margin_bottom = 656.0
 
 [node name="VSeparator" type="VSeparator" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer"]
-margin_left = 496.0
-margin_right = 500.0
+margin_left = 488.0
+margin_right = 492.0
 margin_bottom = 656.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer"]
-margin_left = 508.0
-margin_right = 1008.0
+margin_left = 500.0
+margin_right = 993.0
 margin_bottom = 656.0
 size_flags_horizontal = 3
 
@@ -123,18 +156,18 @@ margin_bottom = 656.0
 
 [node name="Container" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2"]
 margin_left = 8.0
-margin_right = 500.0
+margin_right = 493.0
 margin_bottom = 656.0
 size_flags_horizontal = 3
 
 [node name="TranslationSelector" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container" instance=ExtResource( 5 )]
-margin_right = 492.0
+margin_right = 485.0
 margin_bottom = 42.0
 type = "puppet"
 
 [node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container"]
 margin_top = 46.0
-margin_right = 492.0
+margin_right = 485.0
 margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -144,8 +177,11 @@ wrap_enabled = true
 
 [node name="ConfigManager" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container" instance=ExtResource( 7 )]
 margin_top = 490.0
+margin_right = 485.0
 margin_bottom = 656.0
 
 [node name="TranslationsAdded" parent="." instance=ExtResource( 2 )]
 
-[connection signal="text_changed" from="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/Search" to="PanelContainer/VBoxContainer/Texts/ListBox/EntryList" method="_on_Search_text_changed"]
+[connection signal="text_changed" from="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/Search" to="PanelContainer/VBoxContainer/Texts/ListBox/EntryList" method="_on_Search_text_changed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/AddNew" to="PanelContainer/VBoxContainer/Texts/ListBox/EntryList" method="_on_AddNew_pressed"]
+[connection signal="confirmed" from="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/AddConfirm" to="PanelContainer/VBoxContainer/Texts/ListBox/EntryList" method="_on_AddConfirm_confirmed"]

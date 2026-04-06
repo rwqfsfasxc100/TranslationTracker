@@ -26,7 +26,7 @@ func adding_translations(filepath,dict):
 			if not i in tr_list:
 				tr_list.append(i)
 			stored[lang][i] = t[i]
-	header.text = label_text % [tr_list.size(),dict.size(),filepath.split("/")[filepath.split("/").size() - 1]]
+#	header.text = label_text % [tr_list.size(),dict.size(),filepath.split("/")[filepath.split("/").size() - 1]]
 	add_content()
 #	popup()
 
@@ -57,9 +57,7 @@ func add_content():
 				st[lang] = data[lang]
 		else:
 			cstate[translation] = data.duplicate(true)
-		
-#		breakpoint
-	Translations.emit_signal("translations_added")
+	Translations.finished()
 
 func show_viewer(data):
 	var tr = data.keys()[0]
