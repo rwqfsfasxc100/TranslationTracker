@@ -79,7 +79,7 @@ func _on_AddNew_pressed():
 
 func _on_AddConfirm_confirmed():
 	var txt = add_entry_text.text
-	if txt:
+	if txt and not txt in Translations.state:
 		Translations.add_translation(txt)
 		
 		add_entry.hide()

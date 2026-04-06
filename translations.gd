@@ -96,17 +96,6 @@ func check_hash():
 
 var script_base = "extends Node\n\nconst TRANSLATIONS = %s"
 var file = File.new()
-func format_state() -> Dictionary:
-	var out = {"master_locale":master_locale}
-	for t in state:
-		var data = state[t]
-		for lang in data:
-			var ld = data[lang].duplicate(true)
-			if ld.string:
-				if not lang in out:
-					out[lang] = {}
-				out[lang][t] = ld
-	return out
 
 func fix_locale_state():
 	if current_locales.empty():
@@ -135,3 +124,26 @@ func export_state(path):
 	file.store_string(txt)
 	file.close()
 	unsaved = false
+
+func format_state() -> Dictionary:
+	var out = {"master_locale":master_locale}
+	for t in state:
+		var data = state[t]
+		for lang in data:
+			var ld = data[lang].duplicate(true)
+			var s = ld.string
+			if s:
+				if not lang in out:
+					out[lang] = {}
+				if lang == master_locale:
+					ld.version_hash = hash(s)
+				var m = ld.get("mod",null)
+				var se = ld.get("section",null)
+				var st = ld.get("setting",null)
+				if not m or not se or not st:
+					ld.erase("mod")
+					ld.erase("section")
+					ld.erase("setting")
+					ld.erase("invert")
+				out[lang][t] = ld
+	return out

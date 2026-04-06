@@ -64,10 +64,11 @@ func recheck_hash():
 				
 				visibility = false
 		else: 
-			visibility = true
-			check_hash_button.hint_tooltip = "The selected puppet locale's translation is missing"
-			check_hash_icon.self_modulate = Color(1,0,0,1)
-			is_missing = true
+			if current_puppet_locale:
+				visibility = true
+				check_hash_button.hint_tooltip = "The selected puppet locale's translation is missing"
+				check_hash_icon.self_modulate = Color(1,0,0,1)
+				is_missing = true
 	else: visibility = false
 	check_hash_button.visible = visibility
 	
