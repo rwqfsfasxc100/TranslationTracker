@@ -5,12 +5,13 @@ onready var list = $ScrollContainer/VBoxContainer
 
 signal changed_translation(translation)
 
-onready var searchMode = $SearchIn
+onready var searchMode = $SearchOptsBox/SearchIn
+onready var searchMode2 = $SearchOptsBox/SearchShow
 func _ready():
 	Translations.connect("translations_added",self,"adding_translations")
 	
-	searchMode.connect("pressed",self,"recheck_search")
-
+	searchMode.connect("done",self,"recheck_search")
+	
 func adding_translations():
 	yield(get_tree(),"idle_frame")
 	for a in list.get_children():
@@ -67,7 +68,28 @@ func _on_Search_text_changed(new_text):
 	else:
 		for child in list.get_children():
 			child.visible = true
-
+	
+	for child in list.get_children():
+		if child.visible:
+			match searchMode2.text:
+				"Show: only complete":
+					var n = child.get_node_or_null("Button/NeedsCheck/Button")
+					child.visible = !n.visible
+				"Show: only outdated":
+					var n = child.get_node_or_null("Button/NeedsCheck/Button")
+					var v = n.visible
+					var m = child.get_node_or_null("Button/NeedsCheck/Button/TextureRect")
+					var sm = m.self_modulate
+					child.visible = v and sm == Color(1,1,0,1)
+				"Show: only missing":
+					var n = child.get_node_or_null("Button/NeedsCheck/Button")
+					var v = n.visible
+					var m = child.get_node_or_null("Button/NeedsCheck/Button/TextureRect")
+					var sm = m.self_modulate
+					child.visible = v and sm == Color(1,0,0,1)
+				_:
+					var n = child.get_node_or_null("Button/NeedsCheck/Button")
+					child.visible = true
 
 onready var add_entry = $SearchBox/AddConfirm
 onready var add_entry_text = $SearchBox/AddConfirm/ColorRect/LineEdit

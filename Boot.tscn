@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=1]
 [ext_resource path="res://TranslationsAdded.tscn" type="PackedScene" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://ConfigManager.tscn" type="PackedScene" id=7]
 [ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-courierbold.tres" type="DynamicFont" id=8]
 [ext_resource path="res://SearchIn.gd" type="Script" id=9]
-[ext_resource path="res://Resizer.gd" type="Script" id=10]
+[ext_resource path="res://SearchOpts.gd" type="Script" id=10]
+[ext_resource path="res://Resizer.gd" type="Script" id=11]
 
 [node name="Boot" type="Control"]
 anchor_right = 1.0
@@ -95,13 +96,42 @@ color = Color( 1, 1, 1, 0.156863 )
 margin_right = 434.0
 margin_bottom = 46.0
 
-[node name="SearchIn" type="Button" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
+[node name="SearchOpts" type="Button" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
 margin_top = 79.0
 margin_right = 524.0
 margin_bottom = 112.0
 custom_fonts/font = ExtResource( 8 )
+text = "Search Options"
+script = ExtResource( 10 )
+
+[node name="SearchOptsBox" type="VBoxContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
+visible = false
+margin_top = 116.0
+margin_right = 265.0
+margin_bottom = 165.0
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchOptsBox"]
+margin_right = 265.0
+margin_bottom = 4.0
+
+[node name="SearchIn" type="Button" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchOptsBox"]
+margin_top = 8.0
+margin_right = 265.0
+margin_bottom = 41.0
+custom_fonts/font = ExtResource( 8 )
 text = "Search: Strings"
 script = ExtResource( 9 )
+
+[node name="SearchShow" type="Button" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchOptsBox"]
+margin_right = 10.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 8 )
+text = "Show: all"
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchOptsBox"]
+margin_top = 45.0
+margin_right = 265.0
+margin_bottom = 49.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
 margin_top = 116.0
@@ -205,7 +235,7 @@ anchor_bottom = 1.0
 margin_left = -20.0
 margin_top = -20.0
 mouse_default_cursor_shape = 12
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [connection signal="text_changed" from="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/Search" to="PanelContainer/VBoxContainer/Texts/ListBox/EntryList" method="_on_Search_text_changed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/AddNew" to="PanelContainer/VBoxContainer/Texts/ListBox/EntryList" method="_on_AddNew_pressed"]
