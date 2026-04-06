@@ -30,6 +30,8 @@ func _on_Import_pressed():
 	var dir = Settings.get_value("load","last_path")
 	if dir:
 		import_diag.set_current_dir(dir)
+	var win_size = OS.get_window_size()
+	import_diag.rect_size = Vector2(min(import_diag.rect_size.x, win_size.x), min(import_diag.rect_size.y, win_size.y))
 	import_diag.popup_centered()
 
 
@@ -38,6 +40,8 @@ func _on_Export_pressed():
 	if dir:
 		export_diag.set_current_dir(dir)
 	export_diag.set_current_file("REPLACE_TRANSLATIONS.gd")
+	var win_size = OS.get_window_size()
+	export_diag.rect_size = Vector2(min(export_diag.rect_size.x, win_size.x), min(export_diag.rect_size.y, win_size.y))
 	export_diag.popup_centered()
 
 
