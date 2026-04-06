@@ -5,10 +5,14 @@ onready var list = $ScrollContainer/VBoxContainer
 
 signal changed_translation(translation)
 
+onready var searchMode = $SearchIn
 func _ready():
 	Translations.connect("translations_added",self,"adding_translations")
+	
+	searchMode.connect("pressed",self,"recheck_search")
 
 func adding_translations():
+	yield(get_tree(),"idle_frame")
 	for a in list.get_children():
 		a.queue_free()
 	var l = Translations.state
@@ -31,14 +35,35 @@ func create_button(translation,data):
 func _entry_pressed(translation):
 	emit_signal("changed_translation",translation)
 
+func recheck_search():
+	var txt = $SearchBox/Search.text
+	_on_Search_text_changed(txt)
 
 func _on_Search_text_changed(new_text):
 	if new_text:
 		for child in list.get_children():
-			if "translation" in child and child.translation.split(new_text).size() > 1:
-				child.visible = true
-			else:
-				child.visible = false
+			var do = false
+			var chr = child.translation.to_upper()
+			var nr = new_text.to_upper()
+			match searchMode.text:
+				"Search: Strings":
+					if "translation" in child and chr.split(nr).size() > 1:
+						do = true
+				"Search: Translations":
+					if "data" in child and child.data:
+						for tr in child.data:
+							var td = child.data[tr].string
+							if td.split(new_text).size() > 1:
+								do = true
+				"Search: Both":
+					if "translation" in child and chr.split(nr).size() > 1:
+						do = true
+					if "data" in child and child.data:
+						for tr in child.data:
+							var td = child.data[tr].string.to_upper()
+							if td.split(nr).size() > 1:
+								do = true
+			child.visible = do
 	else:
 		for child in list.get_children():
 			child.visible = true

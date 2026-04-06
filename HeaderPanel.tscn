@@ -1,14 +1,23 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Exit.gd" type="Script" id=1]
 [ext_resource path="res://Mover.gd" type="Script" id=2]
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=3]
 [ext_resource path="res://ClearState.gd" type="Script" id=4]
+[ext_resource path="res://LinkButton.gd" type="Script" id=5]
 
 [node name="HeaderPanel" type="HBoxContainer"]
 margin_right = 1270.0
 margin_bottom = 42.0
 theme = ExtResource( 3 )
+
+[node name="LinkButton" type="Button" parent="."]
+visible = false
+margin_right = 24.0
+margin_bottom = 42.0
+text = "?"
+script = ExtResource( 5 )
+URL = "https://git.kodera.pl/games/delta-v/-/wikis/Submitting-Translations"
 
 [node name="Mover" type="Button" parent="."]
 margin_right = 771.0

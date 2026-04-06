@@ -29,11 +29,13 @@ func _ready():
 	match type:
 		"master":
 			prefix = "Master "
+			hint_tooltip = "The primary locale used for the translation file\n\nThis should be the locale where changes to string content should be made."
 			var master_locale = Translations.master_locale
 			selector.add_item(master_locale)
 			swap_locale_btn.text = ">"
 		"puppet":
 			prefix = "Puppet "
+			hint_tooltip = "Additional locales provided by the translation file\n\nThese should mirror the master locale's content."
 			selector.connect("item_selected",self,"change_selected_locale")
 			swap_locale_btn.text = "<"
 	$Label.text = prefix + $Label.text
@@ -104,16 +106,26 @@ func change_this_translation(translation):
 	else:
 		text_edit.readonly = true
 		config_manager.set_enabled(false)
+	if type == "puppet":
+		Translations.emit_signal("puppet_translation_changed",currently_selected_locale)
 
 func update_text():
 	if current_translation:
+		
 		var newText = text_edit.text
 		var state = Translations.state
 		var this_tr = state.get(current_translation,{})
 		if not currently_selected_locale in this_tr:
 			this_tr[currently_selected_locale] = Translations.blank_entry_dict.duplicate(true)
-		this_tr[currently_selected_locale]["string"] = newText
-		
+		var curr = this_tr[currently_selected_locale]
+		curr["string"] = newText
+		var master_l = Translations.master_locale
+		if currently_selected_locale == master_l:
+			curr["version_hash"] = hash(newText)
+		else:
+			if master_l in this_tr:
+				curr["version_hash"] = hash(this_tr[master_l]["string"])
+		Translations.check_hash()
 
 func openRmv():
 	remove_locale_diag.popup_centered()

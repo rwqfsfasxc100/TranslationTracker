@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://EntryButton.gd" type="Script" id=1]
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=2]
 [ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-courierbold.tres" type="DynamicFont" id=3]
 
+[sub_resource type="StreamTexture" id=1]
+flags = 4
+load_path = "res://HevLib/ui/themes/icons/warning-overlay.stex"
+
 [node name="EntryButton" type="HBoxContainer"]
+pause_mode = 2
+process_priority = -1
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 0 )
@@ -25,6 +31,31 @@ text = "HEVLIB_EXAMPLE_STRING"
 valign = 1
 clip_text = true
 
+[node name="NeedsCheck" type="Control" parent="Button"]
+margin_left = 250.0
+margin_right = 250.0
+margin_bottom = 42.0
+
+[node name="Button" type="Button" parent="Button/NeedsCheck"]
+margin_left = -72.0
+margin_right = -30.0
+margin_bottom = 42.0
+
+[node name="TextureRect" type="TextureRect" parent="Button/NeedsCheck/Button"]
+self_modulate = Color( 1, 1, 0, 1 )
+margin_right = 42.0
+margin_bottom = 42.0
+texture = SubResource( 1 )
+expand = true
+
+[node name="ConfirmLocale" type="ConfirmationDialog" parent="Button/NeedsCheck"]
+margin_right = 263.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 350, 200 )
+popup_exclusive = true
+dialog_text = "Is the puppet translation equivalent to the master translation?"
+dialog_autowrap = true
+
 [node name="Delete" type="Button" parent="."]
 margin_left = 223.0
 margin_right = 250.0
@@ -41,5 +72,7 @@ popup_exclusive = true
 dialog_text = "Are you sure you want to delete this translation string?"
 dialog_autowrap = true
 
+[connection signal="pressed" from="Button/NeedsCheck/Button" to="." method="_on_Button_pressed"]
+[connection signal="confirmed" from="Button/NeedsCheck/ConfirmLocale" to="." method="_on_ForceAccept_confirmed"]
 [connection signal="pressed" from="Delete" to="." method="_on_Delete_pressed"]
 [connection signal="confirmed" from="DoDelete" to="." method="_on_DoDelete_confirmed"]

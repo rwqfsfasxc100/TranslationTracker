@@ -14,6 +14,9 @@ const default_locales = ["en"]
 
 signal translations_adding(file, translations)
 signal translations_added()
+signal puppet_translation_changed(to)
+signal selected_translation(how)
+
 
 const blank_entry_dict = {
 	"string":"",
@@ -81,23 +84,15 @@ func remove_locale(locale, update = true):
 
 var state_hash = 0
 func finished():
-	if master_locale in current_locales:
-		for lv in state:
-			var tv = state[lv]
-			if master_locale in tv:
-				var ml = tv[master_locale]
-				if "string" in ml:
-					var vhash = hash(ml.string)
-					for loc in tv:
-						var th = tv[loc]
-						if "version_hash" in th:
-							th.version_hash = vhash
 	fix_locale_state()
+	check_hash()
+	emit_signal("translations_added")
+
+func check_hash():
 	var h = hash(state) + hash(current_locales) + hash(master_locale)
 	if h != state_hash:
 		unsaved = true
 	state_hash = h
-	emit_signal("translations_added")
 
 var script_base = "extends Node\n\nconst TRANSLATIONS = %s"
 var file = File.new()
@@ -107,10 +102,10 @@ func format_state() -> Dictionary:
 		var data = state[t]
 		for lang in data:
 			var ld = data[lang].duplicate(true)
-			if not lang in out:
-				out[lang] = {}
-			out[lang][t] = ld
-	
+			if ld.string:
+				if not lang in out:
+					out[lang] = {}
+				out[lang][t] = ld
 	return out
 
 func fix_locale_state():
@@ -119,8 +114,11 @@ func fix_locale_state():
 	if not master_locale:
 		master_locale = default_master_locale
 	
-
+var clearing = false
 func clear_state():
+	clearing = true
+	for c in get_tree().get_root().get_node("Boot/PanelContainer/VBoxContainer/Texts/ListBox/EntryList/ScrollContainer/VBoxContainer").get_children():
+		c.queue_free()
 	state.clear()
 	for t in state:
 		remove_translation(t)
@@ -128,6 +126,7 @@ func clear_state():
 		remove_locale(c)
 	
 	finished()
+	clearing = false
 	pass
 
 func export_state(path):

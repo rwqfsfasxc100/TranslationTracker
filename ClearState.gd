@@ -14,4 +14,4 @@ func _pressed():
 
 func kill():
 	Translations.clear_state()
-	Translations.finished()
+#	Translations.finished()
