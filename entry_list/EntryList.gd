@@ -103,5 +103,12 @@ func _on_AddConfirm_confirmed():
 	var txt = add_entry_text.text
 	if txt and not txt in Translations.state:
 		Translations.add_translation(txt)
-		
 		add_entry.hide()
+		select_translation(txt)
+
+func select_translation(txt):
+	yield(get_tree(),"idle_frame")
+	for a in list.get_children():
+		if a.translation == txt:
+			a._entry_pressed()
+			break
