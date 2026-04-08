@@ -46,7 +46,7 @@ margin_left = 466.0
 margin_right = 496.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 30, 42 )
-hint_tooltip = "Remove locale"
+hint_tooltip = "Swap with master locale"
 
 [node name="RemoveConfirm" type="ConfirmationDialog" parent="."]
 margin_left = 289.0
