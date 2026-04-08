@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
+[ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-couriernew-small.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Mover.gd" type="Script" id=2]
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=3]
 [ext_resource path="res://ClearState.gd" type="Script" id=4]
 [ext_resource path="res://LinkButton.gd" type="Script" id=5]
 [ext_resource path="res://WindowControls.gd" type="Script" id=6]
 [ext_resource path="res://ConstrainDialog.gd" type="Script" id=7]
+[ext_resource path="res://SelectedTranslationName.gd" type="Script" id=8]
 
 [node name="HeaderPanel" type="HBoxContainer"]
 margin_right = 1270.0
@@ -21,7 +23,7 @@ script = ExtResource( 5 )
 URL = "https://git.kodera.pl/games/delta-v/-/wikis/Submitting-Translations"
 
 [node name="Mover" type="Button" parent="."]
-margin_right = 771.0
+margin_right = 679.0
 margin_bottom = 42.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -29,49 +31,50 @@ enabled_focus_mode = 0
 flat = true
 script = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="Mover"]
-margin_left = 14.0
-margin_top = 2.0
-margin_right = 1270.0
-margin_bottom = 34.0
+[node name="SelectedTranslationName" type="Label" parent="Mover"]
+margin_right = 679.0
+margin_bottom = 42.0
 size_flags_horizontal = 3
-align = 1
+custom_fonts/font = ExtResource( 1 )
+valign = 1
+clip_text = true
+script = ExtResource( 8 )
 
 [node name="Import" type="Button" parent="."]
-margin_left = 775.0
-margin_right = 872.0
+margin_left = 683.0
+margin_right = 780.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 42, 42 )
 text = "Import"
 
 [node name="Export" type="Button" parent="."]
-margin_left = 876.0
-margin_right = 969.0
+margin_left = 784.0
+margin_right = 877.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 42, 42 )
 text = "Export"
 
 [node name="VSeparator" type="VSeparator" parent="."]
-margin_left = 973.0
-margin_right = 977.0
+margin_left = 881.0
+margin_right = 885.0
 margin_bottom = 42.0
 
 [node name="ClearState" type="Button" parent="."]
-margin_left = 981.0
-margin_right = 1216.0
+margin_left = 889.0
+margin_right = 1124.0
 margin_bottom = 42.0
 text = "Clear Translations"
 script = ExtResource( 4 )
 unsaved_panel = NodePath("../UnsavedPanel2")
 
 [node name="VSeparator2" type="VSeparator" parent="."]
-margin_left = 1220.0
-margin_right = 1224.0
+margin_left = 1128.0
+margin_right = 1132.0
 margin_bottom = 42.0
 
 [node name="Minimize" type="Button" parent="."]
-margin_left = 1144.0
-margin_right = 1186.0
+margin_left = 1136.0
+margin_right = 1178.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 42, 42 )
 focus_mode = 0
@@ -80,8 +83,8 @@ text = "-"
 script = ExtResource( 6 )
 
 [node name="Maximize" type="Button" parent="."]
-margin_left = 1190.0
-margin_right = 1232.0
+margin_left = 1182.0
+margin_right = 1224.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 42, 42 )
 focus_mode = 0
@@ -90,8 +93,8 @@ text = "□"
 script = ExtResource( 6 )
 
 [node name="Exit" type="Button" parent="."]
-margin_left = 1236.0
-margin_right = 1278.0
+margin_left = 1228.0
+margin_right = 1270.0
 margin_bottom = 42.0
 rect_min_size = Vector2( 42, 42 )
 focus_mode = 0
@@ -134,7 +137,6 @@ mode_overrides_title = false
 access = 2
 filters = PoolStringArray( "*.gd ; Translation Drivers" )
 show_hidden_files = true
-rect_min_size = Vector2( 700, 500 )
 script = ExtResource( 7 )
 
 [node name="ImportDiag" type="FileDialog" parent="."]
@@ -150,7 +152,6 @@ mode = 1
 access = 2
 filters = PoolStringArray( "REPLACE_TRANSLATIONS.gd ; Translation Drivers", "*.txt, *.csv ; CSV Translations" )
 show_hidden_files = true
-rect_min_size = Vector2( 700, 500 )
 script = ExtResource( 7 )
 
 [connection signal="button_down" from="Mover" to="Mover" method="down"]
