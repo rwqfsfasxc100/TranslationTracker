@@ -107,5 +107,4 @@ func _on_ForceAccept_confirmed():
 		data[current_puppet_locale]["version_hash"] = h
 		Translations.check_hash()
 		check_hash_button.visible = false
-	
-	pass # Replace with function body.
+		Translations.emit_signal("translation_accepted", [translation])

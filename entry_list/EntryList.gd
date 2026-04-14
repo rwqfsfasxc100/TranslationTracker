@@ -27,6 +27,16 @@ func _ready():
 	bulk_bar.connect("deselect_all", self , "deselect_all")
 	bulk_bar.connect("bulk_accept", self , "bulk_accept")
 	bulk_bar.connect("bulk_delete", self , "bulk_delete")
+	Translations.connect("translation_accepted", self, "_on_translation_accepted")
+
+func _on_translation_accepted(keys):
+	for c in list.get_children():
+		if c.translation in keys:
+			var btn = c.get_node_or_null("Button/NeedsCheck/Button")
+			if btn:
+				btn.visible = false
+	yield(get_tree(), "idle_frame")
+	_auto_advance()
 
 func adding_translations():
 	yield (get_tree(), "idle_frame")
@@ -36,12 +46,29 @@ func adding_translations():
 	for translation in l:
 		var data = l[translation]
 		create_button(translation, data)
+	recheck_search()
+	
 	if list.get_child_count():
 		# Only auto-select if nothing is currently selected
 		if selected_entries.empty():
 			list.get_child(0)._entry_pressed()
+
+func _auto_advance():
+	var children = list.get_children()
+	var start_idx = 0
+	for i in range(children.size()):
+		if children[i].translation == cursor_entry:
+			start_idx = i
+			break
 	
-	recheck_search()
+	for i in range(start_idx + 1, children.size()):
+		var c = children[i]
+		if c.visible:
+			var needs_check = c.get_node_or_null("Button/NeedsCheck/Button")
+			if needs_check and needs_check.visible:
+				c._entry_pressed()
+				c.button.grab_focus()
+				return
 
 func create_button(translation, data):
 	var b = entry_button.instance()
@@ -103,7 +130,8 @@ func deselect_all():
 func bulk_accept():
 	var loc = Translations.current_puppet_locale
 	if loc:
-		Translations.bulk_force_accept(selected_entries, loc)
+		var acceptable = Translations.get_acceptable_keys(selected_entries, loc)
+		Translations.bulk_force_accept(acceptable, loc)
 	deselect_all()
 
 func bulk_delete():

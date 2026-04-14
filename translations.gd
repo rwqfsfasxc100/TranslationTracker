@@ -17,6 +17,7 @@ signal translations_adding(file, translations)
 signal translations_added()
 signal puppet_translation_changed(to)
 signal selected_translation(how)
+signal translation_accepted(keys)
 
 
 const blank_entry_dict = {
@@ -67,7 +68,8 @@ func bulk_force_accept(translations: Array, locale: String):
 			var master_data = state[t].get(master_locale)
 			if master_data and locale in state[t]: # Only if it exists in target locale
 				state[t][locale]["version_hash"] = hash(master_data["string"])
-	finished()
+	check_hash()
+	emit_signal("translation_accepted", translations)
 
 func get_acceptable_keys(keys: Array, locale: String) -> Array:
 	var out = []
