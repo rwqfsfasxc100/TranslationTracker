@@ -24,6 +24,7 @@ config/show_image=true
 Settings="*res://Settings.gd"
 Translations="*res://translations.gd"
 ParseTranslations="*res://ParseTranslations.gd"
+Shortcuts="*res://ShortcutManager.gd"
 
 [debug]
 
