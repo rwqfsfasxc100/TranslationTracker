@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://entry_list/BulkBar.gd" type="Script" id=1]
+
+[node name="BulkBar" type="HBoxContainer"]
+visible = false
+margin_right = 265.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+script = ExtResource( 1 )
+
+[node name="All" type="Button" parent="."]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 0 )
+text = "All"
+
+[node name="Count" type="Label" parent="."]
+margin_left = 36.0
+margin_top = 9.0
+margin_right = 100.0
+margin_bottom = 23.0
+text = "0 selected"
+
+[node name="Spacer" type="Control" parent="."]
+margin_left = 104.0
+margin_right = 145.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+
+[node name="Accept" type="Button" parent="."]
+margin_left = 149.0
+margin_right = 207.0
+margin_bottom = 32.0
+text = "Accept"
+
+[node name="Delete" type="Button" parent="."]
+margin_left = 211.0
+margin_right = 265.0
+margin_bottom = 32.0
+text = "Delete"
+
+[node name="None" type="Button" parent="."]
+margin_left = 222.0
+margin_right = 265.0
+margin_bottom = 32.0
+text = "None"
+
+[node name="AcceptConfirm" type="ConfirmationDialog" parent="."]
+margin_right = 200.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 300, 100 )
+dialog_autowrap = true
+
+[node name="DeleteConfirm" type="ConfirmationDialog" parent="."]
+margin_right = 200.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 300, 100 )
+dialog_text = "Are you sure you want to delete these translation entries? This cannot be undone."
+dialog_autowrap = true
+
+[connection signal="pressed" from="All" to="." method="_on_All_pressed"]
+[connection signal="pressed" from="Accept" to="." method="_on_Accept_pressed"]
+[connection signal="pressed" from="Delete" to="." method="_on_Delete_pressed"]
+[connection signal="pressed" from="None" to="." method="_on_None_pressed"]
+[connection signal="confirmed" from="AcceptConfirm" to="." method="_on_AcceptConfirm_confirmed"]
+[connection signal="confirmed" from="DeleteConfirm" to="." method="_on_DeleteConfirm_confirmed"]

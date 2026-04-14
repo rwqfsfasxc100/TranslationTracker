@@ -11,6 +11,7 @@ const default_master_locale = "en"
 
 var current_locales = ["en"]
 const default_locales = ["en"]
+var current_puppet_locale = ""
 
 signal translations_adding(file, translations)
 signal translations_added()
@@ -29,7 +30,11 @@ const blank_entry_dict = {
 
 func _ready():
 	get_tree().connect("files_dropped",self,"load_file")
+	connect("puppet_translation_changed", self, "_on_puppet_changed")
 
+
+func _on_puppet_changed(to):
+	current_puppet_locale = to
 
 func load_file(files,screen):
 	OS.move_window_to_foreground()
@@ -54,6 +59,32 @@ func add_translation(entry):
 		state[entry] = {}
 	for locale in current_locales:
 		state[entry][locale] = blank_entry_dict.duplicate(true)
+	finished()
+
+func bulk_force_accept(translations: Array, locale: String):
+	for t in translations:
+		if t in state:
+			var master_data = state[t].get(master_locale)
+			if master_data and locale in state[t]: # Only if it exists in target locale
+				state[t][locale]["version_hash"] = hash(master_data["string"])
+	finished()
+
+func get_acceptable_keys(keys: Array, locale: String) -> Array:
+	var out = []
+	for t in keys:
+		if t in state:
+			var master_data = state[t].get(master_locale)
+			if master_data and locale in state[t]:
+				# Check if actually outdated
+				var master_hash = hash(master_data["string"])
+				if state[t][locale]["version_hash"] != master_hash:
+					out.append(t)
+	return out
+
+func bulk_remove_translations(translations: Array):
+	for t in translations:
+		if t in state:
+			state.erase(t)
 	finished()
 
 func add_locale(locale,is_master = false):
