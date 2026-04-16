@@ -13,7 +13,7 @@ var current_locales = ["en"]
 const default_locales = ["en"]
 var current_puppet_locale = ""
 
-signal translations_adding(file, translations)
+signal translations_adding(translations)
 signal translations_added()
 signal puppet_translation_changed(to)
 signal selected_translation(how)
@@ -39,6 +39,7 @@ func _on_puppet_changed(to):
 
 func load_file(files,screen):
 	OS.move_window_to_foreground()
+	var adding_translations = {}
 	for fi in files:
 		var f = ProjectSettings.localize_path(fi)
 		var t = null
@@ -46,7 +47,8 @@ func load_file(files,screen):
 			t = ParseTranslations.load_translation_driver(f)
 		else:
 			t = ParseTranslations.load_translation_file(f)
-		emit_signal("translations_adding",f,t)
+		adding_translations[f] = t
+	emit_signal("translations_adding",adding_translations)
 
 func remove_translation(translation, update = true):
 #	yield(get_tree(),"idle_frame")
