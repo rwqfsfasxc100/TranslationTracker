@@ -12,9 +12,7 @@ func _gui_input(event):
 			resizing = event.pressed
 			accept_event()
 	elif event is InputEventMouseMotion and resizing:
-		var mouse_pos = OS.get_window_position() + get_global_mouse_position()
-		var current_pos = OS.get_window_position()
-		var new_size = mouse_pos - current_pos
+		var new_size = get_global_mouse_position()
 		new_size.x = max(new_size.x, min_window_size.x)
 		new_size.y = max(new_size.y, min_window_size.y)
 		OS.set_window_size(new_size)

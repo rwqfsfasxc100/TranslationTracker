@@ -13,20 +13,35 @@ onready var check_hash = $Button/NeedsCheck
 onready var check_hash_button = $Button/NeedsCheck/Button
 onready var check_hash_icon = $Button/NeedsCheck/Button/TextureRect
 
+onready var selection_overlay = Panel.new()
+
 func _ready():
 	button.connect("pressed",self,"_entry_pressed")
 	Translations.connect("puppet_translation_changed",self,"recheck_puppet")
 	Translations.connect("selected_translation",self,"selected_translation")
 	label.text = translation
 	button.hint_tooltip = translation
+	
+	# Setup selection overlay
+	selection_overlay.set_anchors_and_margins_preset(Control.PRESET_WIDE)
+	selection_overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(0.1, 0.4, 0.9, 0.25) # Transparent blue
+	style.border_width_left = 3
+	style.border_color = Color(0.1, 0.6, 1.0, 1.0) # Bright blue edge
+	selection_overlay.add_stylebox_override("panel", style)
+	button.add_child(selection_overlay)
+	selection_overlay.visible = false
+	
 	yield(get_tree(),"idle_frame")
 	recheck_hash()
-#	check_hash_button.visible = false
-	pass
 
 var trSelNow = ""
 func selected_translation(how):
 	trSelNow = how
+
+func on_selection_changed(keys):
+	selection_overlay.visible = translation in keys
 
 func _entry_pressed():
 	Translations.emit_signal("selected_translation",translation)
@@ -92,5 +107,4 @@ func _on_ForceAccept_confirmed():
 		data[current_puppet_locale]["version_hash"] = h
 		Translations.check_hash()
 		check_hash_button.visible = false
-	
-	pass # Replace with function body.
+		Translations.emit_signal("translation_accepted", [translation])
