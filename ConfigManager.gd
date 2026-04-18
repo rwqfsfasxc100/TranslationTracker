@@ -5,6 +5,9 @@ onready var sect = $Section/PanelContainer/LineEdit
 onready var entry = $Setting/PanelContainer/LineEdit
 onready var invert = $Invert/PanelContainer/CheckButton
 
+onready var copy_btn = $COPY/PanelContainer/Button
+onready var paste_btn = $COPY/PanelContainer2/Button
+
 var translation = ""
 var locale = ""
 func _ready():
@@ -40,6 +43,8 @@ func set_enabled(how):
 	sect.editable = how
 	entry.editable = how
 	invert.disabled = !how
+	copy_btn.disabled = !how
+	paste_btn.disabled = !how
 
 func default():
 	set_enabled(false)
@@ -70,3 +75,19 @@ func _invert_toggled(button_pressed):
 	if locale and locale in state[translation]:
 		var sr = state[translation][locale]
 		sr["invert"] = button_pressed
+
+
+func copy():
+	Translations.config_clipboard = {
+		"mod":id.text,
+		"section":sect.text,
+		"setting":entry.text,
+		"invert":invert.pressed,
+	}
+
+
+func paste():
+	id.text = Translations.config_clipboard.mod
+	sect.text = Translations.config_clipboard.section
+	entry.text = Translations.config_clipboard.setting
+	invert.pressed = Translations.config_clipboard.invert

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=1]
 [ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-courierbold.tres" type="DynamicFont" id=2]
 [ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-courierbold-small.tres" type="DynamicFont" id=3]
 [ext_resource path="res://ConfigManager.gd" type="Script" id=4]
+[ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-couriernew.tres" type="DynamicFont" id=5]
 
 [node name="ConfigManager" type="VBoxContainer"]
 margin_right = 492.0
@@ -120,7 +121,46 @@ margin_right = 239.0
 margin_bottom = 47.0
 disabled = true
 
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_top = 170.0
+margin_right = 492.0
+margin_bottom = 174.0
+
+[node name="COPY" type="HBoxContainer" parent="."]
+margin_top = 178.0
+margin_right = 492.0
+margin_bottom = 221.0
+
+[node name="PanelContainer" type="PanelContainer" parent="COPY"]
+margin_right = 244.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="COPY/PanelContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 239.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 5 )
+text = "Copy these configs"
+
+[node name="PanelContainer2" type="PanelContainer" parent="COPY"]
+margin_left = 248.0
+margin_right = 492.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="COPY/PanelContainer2"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 239.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 5 )
+text = "Paste configs"
+
 [connection signal="text_changed" from="ID/PanelContainer/LineEdit" to="." method="_id_text_changed"]
 [connection signal="text_changed" from="Section/PanelContainer/LineEdit" to="." method="_section_text_changed"]
 [connection signal="text_changed" from="Setting/PanelContainer/LineEdit" to="." method="_setting_text_changed"]
 [connection signal="toggled" from="Invert/PanelContainer/CheckButton" to="." method="_invert_toggled"]
+[connection signal="pressed" from="COPY/PanelContainer/Button" to="." method="copy"]
+[connection signal="pressed" from="COPY/PanelContainer2/Button" to="." method="paste"]

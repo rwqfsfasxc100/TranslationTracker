@@ -29,6 +29,13 @@ const blank_entry_dict = {
 	"invert":false,
 }
 
+var config_clipboard = {
+	"mod":"",
+	"section":"",
+	"setting":"",
+	"invert":false,
+}
+
 func _ready():
 	get_tree().connect("files_dropped",self,"load_file")
 	connect("puppet_translation_changed", self, "_on_puppet_changed")
