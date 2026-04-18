@@ -45,3 +45,8 @@ func save_config():
 			var entry = cfg[section][setting]
 			c.set_value(section,setting,entry)
 	c.save(filepath)
+
+
+
+func getFps():
+	return Engine.iterations_per_second

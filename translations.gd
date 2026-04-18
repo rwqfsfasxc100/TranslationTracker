@@ -43,7 +43,8 @@ func load_file(files,screen):
 	for fi in files:
 		var f = ProjectSettings.localize_path(fi)
 		var t = null
-		if f.ends_with("REPLACE_TRANSLATIONS.gd"):
+		var fname : String = f.split("/")[f.split("/").size() - 1]
+		if fname.begins_with("REPLACE_TRANSLATIONS") and fname.ends_with(".gd"):
 			t = ParseTranslations.load_translation_driver(f)
 		else:
 			t = ParseTranslations.load_translation_file(f)

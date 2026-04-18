@@ -24,3 +24,10 @@ func show():
 		list.text = list.text + opt + "\n"
 	opts.selected = 0
 	label.text = "Imported translations contain different master locale(s) to the current"
+	popup_centered()
+
+func _input(event):
+	if is_visible_in_tree():
+		if event.is_action_pressed("ui_cancel"):
+			hide()
+			get_tree().set_input_as_handled()

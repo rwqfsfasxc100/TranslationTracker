@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=1]
 [ext_resource path="res://add_translations/TranslationsAdded.gd" type="Script" id=2]
 [ext_resource path="res://HevLib/ui/themes/fonts/courier_new/font-courierbold.tres" type="DynamicFont" id=3]
 [ext_resource path="res://add_translations/ChangeMaster.gd" type="Script" id=4]
+[ext_resource path="res://add_translations/ImportConflicts.gd" type="Script" id=5]
+[ext_resource path="res://add_translations/StateConflicts.gd" type="Script" id=6]
 
 [node name="TranslationsAdded" type="Popup"]
-visible = true
 margin_right = 1280.0
 margin_bottom = 720.0
 theme = ExtResource( 1 )
@@ -87,6 +88,7 @@ dialog_autowrap = true
 margin_right = 263.0
 margin_bottom = 104.0
 rect_min_size = Vector2( 500, 500 )
+popup_exclusive = true
 script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ChangeMaster"]
@@ -118,28 +120,63 @@ margin_right = 500.0
 margin_bottom = 434.0
 
 [node name="ImportConflicts" type="WindowDialog" parent="."]
-visible = true
-margin_right = 48.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 500, 500 )
+margin_right = 900.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 900, 500 )
+popup_exclusive = true
+script = ExtResource( 5 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ImportConflicts"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 495.0
 margin_bottom = 495.0
-rect_min_size = Vector2( 490, 490 )
+rect_min_size = Vector2( 890, 490 )
 
 [node name="Label" type="Label" parent="ImportConflicts/VBoxContainer"]
-margin_right = 490.0
+margin_right = 890.0
 margin_bottom = 38.0
+text = "Conflicts within the import(s)"
+align = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ImportConflicts/VBoxContainer"]
 margin_top = 42.0
-margin_right = 490.0
+margin_right = 890.0
 margin_bottom = 490.0
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ImportConflicts/VBoxContainer/ScrollContainer"]
+margin_right = 890.0
+size_flags_horizontal = 3
+
+[node name="StateConflicts" type="WindowDialog" parent="."]
+margin_right = 900.0
+margin_bottom = 500.0
+rect_min_size = Vector2( 900, 500 )
+popup_exclusive = true
+script = ExtResource( 6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StateConflicts"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 495.0
+margin_bottom = 495.0
+rect_min_size = Vector2( 890, 490 )
+
+[node name="Label" type="Label" parent="StateConflicts/VBoxContainer"]
+margin_right = 890.0
+margin_bottom = 38.0
+text = "Conflicts with current translations"
+align = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="StateConflicts/VBoxContainer"]
+margin_top = 42.0
+margin_right = 890.0
+margin_bottom = 490.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StateConflicts/VBoxContainer/ScrollContainer"]
+margin_right = 890.0
+size_flags_horizontal = 3
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_Button_pressed"]
