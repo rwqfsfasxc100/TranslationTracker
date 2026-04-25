@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=1]
 [ext_resource path="res://add_translations/TranslationsAdded.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://SearchOpts.gd" type="Script" id=10]
 [ext_resource path="res://Resizer.gd" type="Script" id=11]
 [ext_resource path="res://HevLib/ui/themes/fonts/verdana/font-verdana-small.tres" type="DynamicFont" id=12]
+[ext_resource path="res://NotoSansMonoCHK.tres" type="DynamicFont" id=13]
 
 [node name="Boot" type="Control"]
 anchor_right = 1.0
@@ -181,7 +182,7 @@ margin_right = 416.0
 margin_bottom = 431.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 13 )
 readonly = true
 wrap_enabled = true
 
@@ -222,7 +223,7 @@ margin_right = 416.0
 margin_bottom = 431.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = ExtResource( 13 )
 readonly = true
 wrap_enabled = true
 
