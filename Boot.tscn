@@ -178,7 +178,7 @@ margin_bottom = 42.0
 [node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container"]
 margin_top = 46.0
 margin_right = 416.0
-margin_bottom = 435.0
+margin_bottom = 431.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 6 )
@@ -186,7 +186,7 @@ readonly = true
 wrap_enabled = true
 
 [node name="ConfigManager" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container" instance=ExtResource( 7 )]
-margin_top = 439.0
+margin_top = 435.0
 margin_right = 416.0
 margin_bottom = 656.0
 
@@ -219,7 +219,7 @@ type = "puppet"
 [node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container"]
 margin_top = 46.0
 margin_right = 416.0
-margin_bottom = 435.0
+margin_bottom = 431.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 6 )
@@ -227,7 +227,7 @@ readonly = true
 wrap_enabled = true
 
 [node name="ConfigManager" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container" instance=ExtResource( 7 )]
-margin_top = 439.0
+margin_top = 435.0
 margin_right = 416.0
 margin_bottom = 656.0
 
