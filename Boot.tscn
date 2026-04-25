@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://HevLib/ui/themes/hev_theme.tres" type="Theme" id=1]
 [ext_resource path="res://add_translations/TranslationsAdded.tscn" type="PackedScene" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://SearchOpts.gd" type="Script" id=10]
 [ext_resource path="res://Resizer.gd" type="Script" id=11]
 [ext_resource path="res://HevLib/ui/themes/fonts/verdana/font-verdana-small.tres" type="DynamicFont" id=12]
-[ext_resource path="res://NotoSansMonoCHK.tres" type="DynamicFont" id=13]
 
 [node name="Boot" type="Control"]
 anchor_right = 1.0
@@ -67,11 +66,11 @@ text = "Translation Strings"
 [node name="SearchBox" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
 margin_top = 36.0
 margin_right = 398.0
-margin_bottom = 69.0
+margin_bottom = 73.0
 
 [node name="Search" type="LineEdit" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox"]
 margin_right = 372.0
-margin_bottom = 33.0
+margin_bottom = 37.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 6 )
 clear_button_enabled = true
@@ -80,7 +79,7 @@ placeholder_text = "Search..."
 [node name="AddNew" type="Button" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox"]
 margin_left = 376.0
 margin_right = 398.0
-margin_bottom = 33.0
+margin_bottom = 37.0
 custom_fonts/font = ExtResource( 8 )
 text = "+"
 
@@ -94,9 +93,9 @@ dialog_hide_on_ok = false
 
 [node name="ColorRect" type="ColorRect" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/AddConfirm"]
 margin_left = 8.0
-margin_top = 46.0
+margin_top = 50.0
 margin_right = 442.0
-margin_bottom = 92.0
+margin_bottom = 98.0
 color = Color( 1, 1, 1, 0.156863 )
 
 [node name="LineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/AddConfirm/ColorRect"]
@@ -104,9 +103,9 @@ margin_right = 434.0
 margin_bottom = 46.0
 
 [node name="SearchOpts" type="Button" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
-margin_top = 73.0
+margin_top = 77.0
 margin_right = 398.0
-margin_bottom = 106.0
+margin_bottom = 114.0
 custom_fonts/font = ExtResource( 8 )
 text = "Search Options"
 script = ExtResource( 10 )
@@ -141,7 +140,7 @@ margin_right = 265.0
 margin_bottom = 49.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
-margin_top = 110.0
+margin_top = 118.0
 margin_right = 398.0
 margin_bottom = 656.0
 size_flags_vertical = 3
@@ -174,20 +173,20 @@ size_flags_horizontal = 3
 
 [node name="TranslationSelector" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container" instance=ExtResource( 5 )]
 margin_right = 416.0
-margin_bottom = 42.0
+margin_bottom = 46.0
 
 [node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container"]
-margin_top = 46.0
+margin_top = 50.0
 margin_right = 416.0
-margin_bottom = 431.0
+margin_bottom = 424.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 12 )
 readonly = true
 wrap_enabled = true
 
 [node name="ConfigManager" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container" instance=ExtResource( 7 )]
-margin_top = 435.0
+margin_top = 428.0
 margin_right = 416.0
 margin_bottom = 656.0
 
@@ -214,21 +213,21 @@ size_flags_horizontal = 3
 
 [node name="TranslationSelector" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container" instance=ExtResource( 5 )]
 margin_right = 416.0
-margin_bottom = 42.0
+margin_bottom = 46.0
 type = "puppet"
 
 [node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container"]
-margin_top = 46.0
+margin_top = 50.0
 margin_right = 416.0
-margin_bottom = 431.0
+margin_bottom = 424.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 12 )
 readonly = true
 wrap_enabled = true
 
 [node name="ConfigManager" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container" instance=ExtResource( 7 )]
-margin_top = 435.0
+margin_top = 428.0
 margin_right = 416.0
 margin_bottom = 656.0
 
