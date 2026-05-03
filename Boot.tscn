@@ -66,11 +66,11 @@ text = "Translation Strings"
 [node name="SearchBox" type="HBoxContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
 margin_top = 36.0
 margin_right = 398.0
-margin_bottom = 73.0
+margin_bottom = 69.0
 
 [node name="Search" type="LineEdit" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox"]
 margin_right = 372.0
-margin_bottom = 37.0
+margin_bottom = 33.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 6 )
 clear_button_enabled = true
@@ -79,7 +79,7 @@ placeholder_text = "Search..."
 [node name="AddNew" type="Button" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox"]
 margin_left = 376.0
 margin_right = 398.0
-margin_bottom = 37.0
+margin_bottom = 33.0
 custom_fonts/font = ExtResource( 8 )
 text = "+"
 
@@ -93,7 +93,7 @@ dialog_hide_on_ok = false
 
 [node name="ColorRect" type="ColorRect" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/AddConfirm"]
 margin_left = 8.0
-margin_top = 50.0
+margin_top = 46.0
 margin_right = 442.0
 margin_bottom = 98.0
 color = Color( 1, 1, 1, 0.156863 )
@@ -103,9 +103,9 @@ margin_right = 434.0
 margin_bottom = 46.0
 
 [node name="SearchOpts" type="Button" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
-margin_top = 77.0
+margin_top = 73.0
 margin_right = 398.0
-margin_bottom = 114.0
+margin_bottom = 106.0
 custom_fonts/font = ExtResource( 8 )
 text = "Search Options"
 script = ExtResource( 10 )
@@ -140,7 +140,7 @@ margin_right = 265.0
 margin_bottom = 49.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/Texts/ListBox/EntryList"]
-margin_top = 118.0
+margin_top = 110.0
 margin_right = 398.0
 margin_bottom = 656.0
 size_flags_vertical = 3
@@ -173,12 +173,12 @@ size_flags_horizontal = 3
 
 [node name="TranslationSelector" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container" instance=ExtResource( 5 )]
 margin_right = 416.0
-margin_bottom = 46.0
+margin_bottom = 42.0
 
 [node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container"]
-margin_top = 50.0
+margin_top = 46.0
 margin_right = 416.0
-margin_bottom = 424.0
+margin_bottom = 431.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 12 )
@@ -186,7 +186,7 @@ readonly = true
 wrap_enabled = true
 
 [node name="ConfigManager" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer/Container" instance=ExtResource( 7 )]
-margin_top = 428.0
+margin_top = 435.0
 margin_right = 416.0
 margin_bottom = 656.0
 
@@ -213,13 +213,13 @@ size_flags_horizontal = 3
 
 [node name="TranslationSelector" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container" instance=ExtResource( 5 )]
 margin_right = 416.0
-margin_bottom = 46.0
+margin_bottom = 42.0
 type = "puppet"
 
 [node name="TextEdit" type="TextEdit" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container"]
-margin_top = 50.0
+margin_top = 46.0
 margin_right = 416.0
-margin_bottom = 424.0
+margin_bottom = 431.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 12 )
@@ -227,7 +227,7 @@ readonly = true
 wrap_enabled = true
 
 [node name="ConfigManager" parent="PanelContainer/VBoxContainer/Texts/TranslationViewer/HBoxContainer2/Container" instance=ExtResource( 7 )]
-margin_top = 428.0
+margin_top = 435.0
 margin_right = 416.0
 margin_bottom = 656.0
 
@@ -243,6 +243,5 @@ margin_top = -20.0
 mouse_default_cursor_shape = 12
 script = ExtResource( 11 )
 
-[connection signal="text_changed" from="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/Search" to="PanelContainer/VBoxContainer/Texts/ListBox/EntryList" method="_on_Search_text_changed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/AddNew" to="PanelContainer/VBoxContainer/Texts/ListBox/EntryList" method="_on_AddNew_pressed"]
 [connection signal="confirmed" from="PanelContainer/VBoxContainer/Texts/ListBox/EntryList/SearchBox/AddConfirm" to="PanelContainer/VBoxContainer/Texts/ListBox/EntryList" method="_on_AddConfirm_confirmed"]

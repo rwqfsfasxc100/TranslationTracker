@@ -19,7 +19,6 @@ var cursor_entry = ""
 
 func _ready():
 	Translations.connect("translations_added", self , "adding_translations")
-	searchMode.connect("done", self , "recheck_search")
 	
 	bulk_bar = bulk_bar_scene.instance()
 	add_child_below_node($SearchOptsBox, bulk_bar)
@@ -46,7 +45,7 @@ func adding_translations():
 	for translation in l:
 		var data = l[translation]
 		create_button(translation, data)
-	recheck_search()
+	
 	
 	if list.get_child_count():
 		# Only auto-select if nothing is currently selected
@@ -160,11 +159,8 @@ func _move_selection(offset):
 	_entry_pressed(btns[next].translation)
 	btns[next].button.grab_focus()
 
-func recheck_search():
-	var txt = $SearchBox/Search.text
-	_on_Search_text_changed(txt)
-
-func _on_Search_text_changed(new_text):
+func _process(delta):
+	var new_text = $SearchBox/Search.text
 	if new_text:
 		for child in list.get_children():
 			var do = false
