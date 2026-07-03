@@ -18,12 +18,10 @@ theme = ExtResource( 3 )
 margin_right = 21.0
 margin_bottom = 42.0
 text = "?"
-script = ExtResource( 5 )
-URL = "https://git.kodera.pl/games/delta-v/-/wikis/Submitting-Translations"
 
 [node name="Mover" type="Button" parent="."]
 margin_left = 25.0
-margin_right = 764.0
+margin_right = 669.0
 margin_bottom = 42.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -40,6 +38,18 @@ valign = 1
 clip_text = true
 script = ExtResource( 8 )
 
+[node name="License" type="Button" parent="."]
+margin_left = 673.0
+margin_right = 756.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 42, 42 )
+text = "License"
+
+[node name="VSeparator" type="VSeparator" parent="."]
+margin_left = 760.0
+margin_right = 764.0
+margin_bottom = 42.0
+
 [node name="Import" type="Button" parent="."]
 margin_left = 768.0
 margin_right = 845.0
@@ -54,7 +64,7 @@ margin_bottom = 42.0
 rect_min_size = Vector2( 42, 42 )
 text = "Export"
 
-[node name="VSeparator" type="VSeparator" parent="."]
+[node name="VSeparator3" type="VSeparator" parent="."]
 margin_left = 928.0
 margin_right = 932.0
 margin_bottom = 42.0
@@ -140,8 +150,8 @@ show_hidden_files = true
 script = ExtResource( 7 )
 
 [node name="ImportDiag" type="FileDialog" parent="."]
-margin_left = 570.0
-margin_right = 1270.0
+margin_left = 640.0
+margin_right = 1340.0
 margin_bottom = 500.0
 rect_min_size = Vector2( 700, 500 )
 popup_exclusive = true
@@ -154,8 +164,89 @@ filters = PoolStringArray( "REPLACE_TRANSLATIONS.gd ; Translation Drivers", "*.t
 show_hidden_files = true
 script = ExtResource( 7 )
 
+[node name="LicensePanel" type="ConfirmationDialog" parent="."]
+margin_left = 670.0
+margin_right = 1270.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 600, 400 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LicensePanel"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 592.0
+margin_bottom = 348.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="LicensePanel/VBoxContainer"]
+margin_right = 584.0
+margin_bottom = 38.0
+text = "Modify translations license"
+align = 1
+
+[node name="TextEdit" type="TextEdit" parent="LicensePanel/VBoxContainer"]
+margin_top = 42.0
+margin_right = 584.0
+margin_bottom = 340.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HelpDiag" type="AcceptDialog" parent="."]
+margin_left = 870.0
+margin_right = 1270.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 400, 300 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HelpDiag"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 392.0
+margin_bottom = 248.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="HelpDiag/VBoxContainer"]
+margin_right = 384.0
+margin_bottom = 38.0
+text = "Help & other guides"
+align = 1
+
+[node name="Button" type="Button" parent="HelpDiag/VBoxContainer"]
+margin_top = 42.0
+margin_right = 384.0
+margin_bottom = 78.0
+text = "DV Translation guidelines"
+script = ExtResource( 5 )
+URL = "https://git.kodera.pl/games/delta-v/-/wikis/Submitting-Translations"
+
+[node name="Button4" type="Button" parent="HelpDiag/VBoxContainer"]
+margin_top = 82.0
+margin_right = 384.0
+margin_bottom = 118.0
+text = "Submitting translation PRs"
+script = ExtResource( 5 )
+URL = "https://github.com/rwqfsfasxc100/TranslationTracker/wiki/Submitting-a-PR-for-Translations"
+
+[node name="Button3" type="Button" parent="HelpDiag/VBoxContainer"]
+margin_top = 122.0
+margin_right = 384.0
+margin_bottom = 158.0
+text = "TranslationTracker UI Layout"
+script = ExtResource( 5 )
+URL = "https://github.com/rwqfsfasxc100/TranslationTracker/wiki/User-Interface-and-Layout"
+
+[node name="Button2" type="Button" parent="HelpDiag/VBoxContainer"]
+margin_top = 162.0
+margin_right = 384.0
+margin_bottom = 198.0
+text = "How to use TranslationTracker"
+script = ExtResource( 5 )
+URL = "https://github.com/rwqfsfasxc100/TranslationTracker/wiki/How-To-Use-Translation-Tracker"
+
+[connection signal="pressed" from="LinkButton" to="Mover" method="_on_LinkButton_pressed"]
 [connection signal="button_down" from="Mover" to="Mover" method="down"]
 [connection signal="button_up" from="Mover" to="Mover" method="up"]
+[connection signal="pressed" from="License" to="Mover" method="_on_License_pressed"]
 [connection signal="pressed" from="Import" to="Mover" method="_on_Import_pressed"]
 [connection signal="pressed" from="Export" to="Mover" method="_on_Export_pressed"]
 [connection signal="pressed" from="Minimize" to="Minimize" method="_on_Minimize_pressed"]
@@ -163,3 +254,4 @@ script = ExtResource( 7 )
 [connection signal="pressed" from="Exit" to="Exit" method="_on_Exit_pressed"]
 [connection signal="file_selected" from="ExportDiag" to="Mover" method="_on_ExportDiag_file_selected"]
 [connection signal="files_selected" from="ImportDiag" to="Mover" method="_on_ImportDiag_files_selected"]
+[connection signal="confirmed" from="LicensePanel" to="Mover" method="_on_LicensePanel_confirmed"]

@@ -97,3 +97,40 @@ func translation_file_to_dictionary(path : String, delimiter : String = "|",lang
 		index += 1
 		translation_count += 1
 	return dictionary
+
+func get_license(last_driver_file:String):
+	if last_driver_file:
+		file.open(last_driver_file,File.READ)
+		var data = file.get_as_text(true).split("\n")
+		file.close()
+		var license:String = ""
+		
+		var READ:bool = false
+		for line in data:
+			if line.begins_with("# [license]"):
+				READ = true
+				continue
+			elif line.begins_with("const ") or line.begins_with("# [/license]"):
+				READ = false
+				continue
+			if READ and line.begins_with("# "):
+				if license: license += "\n" + line.substr(2)
+				else: license = line.substr(2)
+			else:
+				READ = false
+		if license:
+			license = license.strip_edges()
+		return license
+	else:
+		return ""
+
+func print_license(license:String):
+	if license:
+		var NL = ""
+		for line in license.split("\n"):
+			if NL:
+				NL += "\n# " + line
+			else:
+				NL = "# " + line
+		license = "# [license]\n%s\n# [/license]\n\n" % NL
+	return license

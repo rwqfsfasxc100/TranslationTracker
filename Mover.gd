@@ -3,6 +3,9 @@ extends Button
 onready var export_diag = get_node_or_null(NodePath("../ExportDiag"))
 onready var import_diag = get_node_or_null(NodePath("../ImportDiag"))
 onready var export_btn = get_node_or_null(NodePath("../Export"))
+onready var license_diag = get_node_or_null(NodePath("../LicensePanel"))
+onready var license_text = get_node_or_null(NodePath("../LicensePanel/VBoxContainer/TextEdit"))
+onready var helpdiag = get_node_or_null(NodePath("../HelpDiag"))
 
 var moving = false
 
@@ -58,3 +61,17 @@ func _on_ExportDiag_file_selected(path):
 		var p1 = path.split(path.split("/")[path.split("/").size() - 1])[0]
 		Settings.set_value("load","last_path",p1)
 		Translations.export_state(path)
+
+
+func _on_License_pressed():
+	license_text.text = Translations.current_license
+	license_diag.popup_centered()
+	license_text.grab_focus()
+
+
+func _on_LicensePanel_confirmed():
+	Translations.current_license = license_text.text
+
+
+func _on_LinkButton_pressed():
+	helpdiag.popup_centered()

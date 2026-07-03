@@ -44,6 +44,8 @@ func _ready():
 func _on_puppet_changed(to):
 	current_puppet_locale = to
 
+var current_license = ""
+
 func load_file(files,screen):
 	OS.move_window_to_foreground()
 	var adding_translations = {}
@@ -53,6 +55,7 @@ func load_file(files,screen):
 		var fname : String = f.split("/")[f.split("/").size() - 1]
 		if fname.begins_with("REPLACE_TRANSLATIONS") and fname.ends_with(".gd"):
 			t = ParseTranslations.load_translation_driver(f)
+			current_license = ParseTranslations.get_license(f)
 		else:
 			t = ParseTranslations.load_translation_file(f)
 		adding_translations[f] = t
@@ -137,7 +140,7 @@ func check_hash():
 		unsaved = true
 	state_hash = h
 
-var script_base = "extends Node\n\n# This translation file is generated automatically\n# Do not modify anything directly, as this can break things for those working on them\n# Please use Translation Tracker to modify these yourself, and contact the mod author to implement them\n# https://github.com/rwqfsfasxc100/TranslationTracker/releases/latest\n\nconst TRANSLATIONS = %s"
+var script_base = "extends Node\n\n# This translation file is generated automatically\n# Do not modify anything directly, as this can break things for those working on them\n# Please use Translation Tracker to modify these yourself, and contact the mod author to implement them\n# https://github.com/rwqfsfasxc100/TranslationTracker/releases/latest\n\n%sconst TRANSLATIONS = %s"
 var file = File.new()
 
 func fix_locale_state():
@@ -164,7 +167,7 @@ func clear_state():
 	pass
 
 func export_state(path):
-	var txt = script_base % JSON.print(format_state(),"\t")
+	var txt = script_base % [ParseTranslations.print_license(current_license),JSON.print(format_state(),"\t")]
 	file.open(path,File.WRITE)
 	file.store_string(txt)
 	file.close()
