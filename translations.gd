@@ -140,7 +140,7 @@ func check_hash():
 		unsaved = true
 	state_hash = h
 
-var script_base = "extends Node\n\n# This translation file is generated automatically\n# Do not modify anything directly, as this can break things for those working on them\n# Please use Translation Tracker to modify these yourself, and contact the mod author to implement them\n# https://github.com/rwqfsfasxc100/TranslationTracker/releases/latest\n\n%sconst TRANSLATIONS = %s"
+var script_base = "# This translation file is generated automatically\n# Do not modify anything directly, as this will break things for translators\n# Please use Translation Tracker to modify these yourself, and contact the mod author to implement them\n# https://github.com/rwqfsfasxc100/TranslationTracker/releases/latest\n\n%sconst TRANSLATIONS = %s"
 var file = File.new()
 
 func fix_locale_state():
